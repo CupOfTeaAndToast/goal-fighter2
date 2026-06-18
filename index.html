@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Goal Fighter: a retro arcade soccer-fighting browser game." />
+  <title>Goal Fighter</title>
+  <link rel="stylesheet" href="src/style.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="cabinet" aria-label="Goal Fighter arcade cabinet">
+      <div class="marquee">
+        <span>Goal Fighter</span>
+        <small>Street court arcade soccer combat</small>
+      </div>
+      <div class="screen-wrap">
+        <canvas id="game" width="1376" height="768" aria-label="Goal Fighter game canvas"></canvas>
+        <div class="scanlines" aria-hidden="true"></div>
+      </div>
+      <div class="controls">
+        <p><strong>Move</strong> WASD / Arrow Keys</p>
+        <p><strong>Kick</strong> J / Z / Space</p>
+        <p><strong>Slide</strong> K / X / Shift</p>
+        <p><strong>Jump</strong> W / Up</p>
+        <p><strong>Pause</strong> P</p>
+      </div>
+    </section>
+  </main>
+  <script src="src/game.js"></script>
+</body>
+</html>
