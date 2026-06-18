@@ -184,8 +184,8 @@
   const audio = new AudioArcade();
 
   const spriteSheets = {
-    frameWidth: 1376 / 9,
-    frameHeight: 768,
+    frameWidth: 384,
+    frameHeight: 384,
     actions: ['idle1', 'idle2', 'run1', 'run2', 'kick1', 'kick2', 'slide1', 'jump1', 'stun1'],
     images: {}
   };
@@ -205,8 +205,8 @@
     spriteSheets.images[key] = image;
   }
 
-  loadSpriteSheet('rivet', 'assets/generated/rivet-character-sprite-sheet.jpg');
-  loadSpriteSheet('blaze', 'assets/generated/blaze-character-sprite-sheet.jpg');
+  loadSpriteSheet('rivet', 'assets/generated/rivet-character-sprite-sheet.png');
+  loadSpriteSheet('blaze', 'assets/generated/blaze-character-sprite-sheet.png');
 
   const spritePoses = {
     idle: [
@@ -516,7 +516,25 @@
       state.shake = activeKick ? 9 : 3;
       burst(ball.x, ball.y, activeKick ? p.secondary : palette.cream, activeKick ? 18 : 5, activeKick ? 320 : 110);
       audio.sfx(activeKick ? 'hit' : 'bounce');
-      state.afterimages.push({ x: p.x, y: p.y, face: p.face, primary: p.primary, life: 0.22, max: 0.22 });
+      state.afterimages.push({
+        x: p.x,
+        y: p.y,
+        face: p.face,
+        vx: p.vx,
+        anim: p.anim,
+        onGround: p.onGround,
+        kicking: p.kicking,
+        sliding: p.sliding,
+        stun: p.stun,
+        spriteKey: p.spriteKey,
+        primary: p.primary,
+        secondary: p.secondary,
+        skin: p.skin,
+        hair: p.hair,
+        jersey: p.jersey,
+        life: 0.22,
+        max: 0.22
+      });
     }
   }
 
@@ -1112,7 +1130,13 @@
 
     drawBackground(t);
 
-    for (const img of state.afterimages) drawPlayer(img, img.life / img.max * 0.35);
+    for (const img of state.afterimages) {
+      try {
+        drawPlayer(img, img.life / img.max * 0.35);
+      } catch (error) {
+        img.life = 0;
+      }
+    }
     const ordered = [...players].sort((a, b) => a.y - b.y);
     drawBall();
     for (const p of ordered) drawPlayer(p);
