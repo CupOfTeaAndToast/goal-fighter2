@@ -1,0 +1,6 @@
+{
+  "frameWidth": 384,
+  "frameHeight": 384,
+  "scale": 2,
+  "frames": ["idle1", "idle2", "run1", "run2", "kick1", "kick2", "slide1", "jump1", "stun1"]
+}
