@@ -184,8 +184,8 @@
   const audio = new AudioArcade();
 
   const spriteSheets = {
-    frameWidth: 384,
-    frameHeight: 384,
+    frameWidth: 1376 / 9,
+    frameHeight: 768,
     actions: ['idle1', 'idle2', 'run1', 'run2', 'kick1', 'kick2', 'slide1', 'jump1', 'stun1'],
     images: {}
   };
@@ -205,8 +205,8 @@
     spriteSheets.images[key] = image;
   }
 
-  loadSpriteSheet('rivet', 'assets/generated/rivet-character-sprite-sheet.png');
-  loadSpriteSheet('blaze', 'assets/generated/blaze-character-sprite-sheet.png');
+  loadSpriteSheet('rivet', 'rivet-character-sprite-sheet.png');
+  loadSpriteSheet('blaze', 'blaze-character-sprite-sheet.png');
 
   const spritePoses = {
     idle: [
