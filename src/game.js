@@ -184,8 +184,10 @@
   const audio = new AudioArcade();
 
   const spriteSheets = {
-    frameWidth: 1376 / 9,
-    frameHeight: 768,
+    columns: 3,
+    rows: 3,
+    frameWidth: 1376 / 3,
+    frameHeight: 768 / 3,
     actions: ['idle1', 'idle2', 'run1', 'run2', 'kick1', 'kick2', 'slide1', 'jump1', 'stun1'],
     images: {}
   };
@@ -913,11 +915,13 @@
     ctx.beginPath();
     ctx.ellipse(0, drawH - 4 - frame.bob * 0.15, animation === 'slide' ? 92 : 64, animation === 'slide' ? 15 : 17, 0, 0, Math.PI * 2);
     ctx.fill();
+    const sourceX = (frameIndex % spriteSheets.columns) * spriteSheets.frameWidth;
+    const sourceY = Math.floor(frameIndex / spriteSheets.columns) * spriteSheets.frameHeight;
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(
       image,
-      frameIndex * spriteSheets.frameWidth,
-      0,
+      sourceX,
+      sourceY,
       spriteSheets.frameWidth,
       spriteSheets.frameHeight,
       -drawW / 2,
